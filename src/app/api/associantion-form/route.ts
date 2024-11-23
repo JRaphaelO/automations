@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createFormData = (formData: any) => {
     const fields = formData['fields'];
     const values = formData['values'];
@@ -52,6 +53,7 @@ const createFormData = (formData: any) => {
     return inputDataObject;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createSigner = (formData: any) => {
     const phone = formData['TELEFONE'];
     let phoneCountryCode = null;
@@ -92,6 +94,7 @@ const createSigner = (formData: any) => {
     };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const createDoc = async (apiToken: string, docId: string, signer: any) => {
     const signerName = docId == '40c855a6-7f29-46db-8817-3a40d086e342' ? signer.name : (signer.nameResponsible || signer.name);
     const data = ['c72e345c-3e62-4888-bec2-00bc52ccd759', 'd6d91a72-28a4-4460-930a-da9cc7b42aa0', '772b7342-d28d-4c2f-aeea-6b2a38b6cc8b', '70695c73-9350-4cc6-b56b-c08fb9dbac10'].includes(docId) ? signer.data : signer.birth_date;
