@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const created_at = new Date();
     const formattedDate = `${created_at.getDate()}-${created_at.getMonth()}-${created_at.getFullYear()}`;
 
-    var addressFormatted = body.address + ' - ' + body.number;
+    let addressFormatted = body.address + ' - ' + body.number;
     if (body.complement !== '' && body.complement !== null) {
         addressFormatted += ', ' + body.complement;
     }
