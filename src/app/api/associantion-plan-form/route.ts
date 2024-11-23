@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
 
     const phone = body.phone;
     let countryCodePhone = null;
-    let numberPhone = null;
+    let numberPhone = '';
     if (phone) {
         const phoneArray = phone.split(' ');
         countryCodePhone = phoneArray[0];
