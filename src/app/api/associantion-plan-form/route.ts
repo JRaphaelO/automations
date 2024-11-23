@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-    console.log('Request Body:', body); // Log de diagnóstico
 
     // Check if the body is empty
     if (!body) {
@@ -25,8 +24,6 @@ export async function POST(request: NextRequest) {
         signerName = body.nameResponsable;
         docId = process.env.RESPONSABLE_PLAN_DOC_TEMPLATE_ID;
     }
-
-    console.log('Doc ID:', docId); // Log de diagnóstico
 
     const created_at = new Date();
     const formattedDate = `${created_at.getDate()}-${created_at.getMonth()}-${created_at.getFullYear()}`;
@@ -107,8 +104,6 @@ export async function POST(request: NextRequest) {
     if (response.status !== 200) {
         return NextResponse.json({ body: "Error on Zapsign API", raw, response }, { status: 500 });
     }
-
-    console.log('Response:', response); // Log de diagnóstico
 
     // Return no content
     return new NextResponse(null, { status: 204 });
