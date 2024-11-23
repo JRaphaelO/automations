@@ -8,13 +8,13 @@ const createFormData = (formData: any) => {
     const fieldsArray = fields.split(",");
     const valuesArray = values.split(",");
 
-    const keyValueArray = [];
+    const keyValueArray: { chave: string; valor: string | null }[] = [];
     let currentIndex = 0;
 
     for (let index = 0; index < fieldsArray.length; index++) {
         const key = fieldsArray[index].trim();
 
-        const valueArray = [];
+        const valueArray: string[] = [];
         if (!valuesArray[currentIndex].startsWith('"') && !valuesArray[currentIndex].endsWith('"')) {
             valueArray.push(valuesArray[currentIndex].trim());
         }
@@ -57,11 +57,11 @@ const createFormData = (formData: any) => {
 const createSigner = (formData: any) => {
     const phone = formData['TELEFONE'];
     let phoneCountryCode = null;
-    let phoneNumber = null;
+    let phoneNumber: string | null = null;
     if (phone != null) {
         const phoneSplited = phone.split(' ');
         phoneCountryCode = phoneSplited[0];
-        phoneNumber = `(${phoneSplited[1]}) ${phoneSplited[2]}`;
+        phoneNumber = `${phoneSplited[1]} ${phoneSplited[2]}`;
     }
 
     const data = new Date(formData['CREATED_AT']);
